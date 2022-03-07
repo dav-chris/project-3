@@ -32,11 +32,10 @@
       
       
    3. [Mise en oeuvre du projet](#section-setup)  
-   
-   
-   4. [Tests de bon fonctionnement de l'API](#section-test-api)  
-   
-   5. [Requêter l'API](#section-use-api)
+
+      3.1. [Démarrage des noeuds](#section-start-nodes)
+      3.2. [Tests de bon fonctionnement de l'API](#section-test-api)     
+      3.3. [Requêter l'API](#section-use-api)
 
 ---
 
@@ -105,13 +104,20 @@ données.
 [Back to top](#cell-toc)<br/>
 
 
+
 <br/>
 
-## 4. Tests de bon fonctionnement de l'API <a name='section-test-api'></a>
+### 3.1. Démarrage des noeuds <a name='section-start-nodes'></a>
+[Back to top](#cell-toc)<br/>
+
+<br/>
+
+### 3.2. Tests de bon fonctionnement de l'API <a name='section-test-api'></a>
 [Back to top](#cell-toc)<br/>
 
 
 <br/>
 
-## 5. Requêter l'API <a name='section-use-api'></a>
+### 3.3. Requêter l'API <a name='section-use-api'></a>
 [Back to top](#cell-toc)<br/>
+
