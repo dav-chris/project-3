@@ -47,6 +47,7 @@ Ce projet a été réalisé dans le cadre de la formation de "**Data Engineer**"
 
 
 <br/>
+
 ### 1.1. Objectifs <a name='section-objectifs'></a>
 [Back to top](#cell-toc)<br/>
 
@@ -56,51 +57,61 @@ données.
 
 
 <br/>
+
 ### 1.2. Architecture du projet <a name='section-architecture'></a>
 [Back to top](#cell-toc)<br/>
 
 
 <br/>
+
 ### 1.3. Jeu de données <a name='section-data'></a>
 [Back to top](#cell-toc)<br/>
 
 
 <br/>
+
 ### 1.4. Système de base de données <a name='section-sys-db'></a>
 [Back to top](#cell-toc)<br/>
 
 
 <br/>
+
 ### 1.5. Fonctionnalités de l'API <a name='section-api-functionalities'></a>
 [Back to top](#cell-toc)<br/>
 
 
 <br/>
+
 ## 2. Contenu <a name='section-content'></a>
 [Back to top](#cell-toc)<br/>
 
 
 <br/>
+
 ### 2.1. Technologies utilisées <a name='section-technos'></a>
 [Back to top](#cell-toc)<br/>
 
 
 <br/>
+
 ### 2.2. Description du contenu du projet <a name='section-projet-content'></a>
 [Back to top](#cell-toc)<br/>
 
 
 
 <br/>
+
 ## 3. Mise en oeuvre du projet <a name='section-setup'></a>
 [Back to top](#cell-toc)<br/>
 
 
 <br/>
+
 ## 4. Tests de bon fonctionnement de l'API <a name='section-test-api'></a>
 [Back to top](#cell-toc)<br/>
 
 
 <br/>
+
 ## 5. Requêter l'API <a name='section-use-api'></a>
 [Back to top](#cell-toc)<br/>
