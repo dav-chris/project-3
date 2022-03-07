@@ -1,0 +1,4 @@
+Flask==2.0.3
+Flask-Pydantic==0.9.0
+pydantic
+flask_pymongo

@@ -1,0 +1,91 @@
+
+# Create network
+docker network create project3-net-bdd
+
+
+# Create volumes
+docker volume create project3-data-db
+docker volume create project3-log
+
+
+
+# ~~~ Build Docker image: [ project3-ubuntu-python ]
+#
+cd build/docker/images/ubuntu-python
+docker image build \
+   --tag project3-ubuntu-python \
+   --pull \
+   .
+
+
+# ~~~ Build Docker image: [ project3-mongo-client ]
+#
+cd build/docker/images/mongo-client
+docker image build \
+   --tag project3-mongo-client \
+   .
+
+
+#
+# Start mongodb
+#
+# [1]: via Docker compose
+cd build/docker/compose
+docker compose up -d
+#
+# [2]: manually
+docker container run \
+   --rm \
+   --name project3-mongo-server \
+   -d \
+   -e MONGO_INITDB_ROOT_USERNAME=admin \
+   -e MONGO_INITDB_ROOT_PASSWORD=admin \
+   --network project3-net-bdd \
+   -p 27017:27017 \
+   -v project3-data-db:/data/db \
+   mongo:latest
+
+
+# ~~~ Build Dokcer image: [ project3-mongo-loader ]
+#
+cd <PROJECT_ROOT>
+docker image build \
+   --build-arg CSV_FILENAME=top250-00-19.csv \
+   --file build/docker/images/mongo-loader/Dockerfile \
+   --tag project3-mongo-loader \
+   .
+
+
+# ~~~ START container: [ project3-mongo-loader ]
+#
+docker container run \
+   --name project3-mongo-loader \
+   --rm \
+   -it \
+   --env MONGO_HOST=project3-mongo-server \
+   --env MONGO_PORT=27017 \
+   --env MONGO_AUTHENT_DB=admin \
+   --env MONGO_USER=admin \
+   --env MONGO_PWD=admin \
+   --env TARGET_DATABASE=football \
+   --env TARGET_COLLECTION=users \
+   --network project3-net-bdd \
+   --mount type=volume,source=project3-log,destination=/app/log \
+   project3-mongo-loader
+
+####### work
+
+ 
+docker container run \
+   --mount type=volume,src=project3-log,dst=/app/log \
+   --network project3-net-bdd \
+   --rm --name test-loader -it project3-mongo-loader /bin/bash 
+   
+
+
+
+
+
+
+
+
