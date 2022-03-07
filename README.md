@@ -33,7 +33,7 @@
       
    3. [Mise en oeuvre du projet](#section-setup)  
 
-      3.1. [Démarrage des noeuds](#section-start-nodes)
+      3.1. [Démarrage des noeuds](#section-start-nodes)  
       3.2. [Tests de bon fonctionnement de l'API](#section-test-api)     
       3.3. [Requêter l'API](#section-use-api)
 
