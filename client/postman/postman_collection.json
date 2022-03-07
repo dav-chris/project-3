@@ -1,0 +1,440 @@
+{
+	"info": {
+		"_postman_id": "9365a030-8a63-4e9f-825c-b4d8412ff969",
+		"name": "Project 3 : db",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "player",
+			"item": [
+				{
+					"name": "players_count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/players/count",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"players",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "player_find_one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/player/find_one",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"player",
+								"find_one"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "player_names",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/player/names",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"player",
+								"names"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "player_by_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/player/id/6224bb253fe426d471d11f9f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"player",
+								"id",
+								"6224bb253fe426d471d11f9f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "player_by_name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/player/name/LUIS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"player",
+								"name",
+								"LUIS"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "players_left_league_on_period",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "player_by_full_name_no_name",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"PlayerName\":\"\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/player/byname",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"player",
+								"byname"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "player_by_full_name_not_found",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"PlayerName\":\"Josette\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/player/byname",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"player",
+								"byname"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "player_by_full_name_name_found",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"PlayerName\":\"Giangiacomo Magnani\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/player/byname",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"player",
+								"byname"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "status",
+			"item": [
+				{
+					"name": "status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "status_db",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/status/db",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"status",
+								"db"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "transfer",
+			"item": [
+				{
+					"name": "transfer count per player",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/transfer/count/per_player",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"transfer",
+								"count",
+								"per_player"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transfer cost max per team to",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/TransfersCostMaxPerTeam",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"TransfersCostMaxPerTeam"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transfer count per team to",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/TransfersNbPerTeamTo",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"TransfersNbPerTeamTo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transfer count per team from",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/TransfersNbPerTeamFrom",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"TransfersNbPerTeamFrom"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "league",
+			"item": [
+				{
+					"name": "league_names",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/league/names",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"league",
+								"names"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "team",
+			"item": [
+				{
+					"name": "team_names",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/team/names",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"team",
+								"names"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teams_per_league",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/teams_per_league",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"teams_per_league"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
