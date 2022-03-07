@@ -1,0 +1,17 @@
+{
+      "mongo": {
+            "server": {
+                  "host":  "project3-mongo-server"
+               ,  "port":  "27017"
+            }
+         ,  "cnx": {
+                  "username"  : "admin"
+               ,  "password"  : "admin"
+               ,  "authSource": "admin"
+            }
+         ,  "schema": {
+                  "database"  : "football"
+               ,  "collection": "users"
+            }
+      }
+}

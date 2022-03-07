@@ -1,0 +1,55 @@
+version: "3.9"
+
+services:
+
+  mongo-server:
+    image: "mongo:latest"
+    container_name: project3-mongo-server
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    networks:
+      - project3-net-bdd
+    ports:
+      - "27017:27017"
+    volumes:
+      - project3-data-db:/data/db
+
+  mongo-loader:
+    image: "project3-mongo-loader"
+    build:
+      dockerfile: build/docker/images/mongo-loader/Dockerfile
+      context: .
+      args:
+        CSV_FILENAME: top250-00-19.csv
+    container_name: project3-mongo-loader
+    volumes:
+      - project3-log:/app/log
+    networks:
+      - project3-net-bdd
+    depends_on:
+      - mongo-server
+
+  # api:
+  #   image: project3-api
+  #   build:
+  #     dockerfile: build/docker/images/api/Dockerfile
+  #     context: .
+  #   container_name: project3-api-cont
+  #   networks:
+  #     - project3-net-bdd
+  #   ports:
+  #     - "5000:5000"
+  #   depends_on:
+  #     - mongo-loader
+
+networks:
+  project3-net-bdd:
+    driver: bridge
+    name: project3-net-bdd
+
+volumes:
+  project3-data-db:
+  project3-log:
+
+
