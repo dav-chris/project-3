@@ -35,7 +35,7 @@ services:
   #   build:
   #     dockerfile: build/docker/images/api/Dockerfile
   #     context: .
-  #   container_name: project3-api-cont
+  #   container_name: project3-api-server
   #   networks:
   #     - project3-net-bdd
   #   ports:
@@ -51,5 +51,3 @@ networks:
 volumes:
   project3-data-db:
   project3-log:
-
-
