@@ -229,7 +229,7 @@ La procédure décrite ci-dessous permettra le déploiement et la mise en servic
 Exécuter la commande suivante:
 
 ```bash
-git clone https://github.com/dav-chris/project3.git ./project
+git clone https://github.com/dav-chris/project-3.git ./project
 ```
 
 Le résultat devrait être le suivant:  
