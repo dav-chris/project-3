@@ -338,17 +338,16 @@ Vous trouverez ci-dessous une procédure décrivant comment installer et démarr
 La procédure d'installation qui est décrite ci-dessous suppose que nous disposions de deux machines:
 
    - <u>une machine hôte</u>  
-     (qui contiendra l'API)  
+     (hébergeant les containers correspondant à l'API et à la base de données)  
      Dans notre cas, nous avons pris la VM mise à disposition par datascientest pour héberger l'API.  
      Pour l'équipe datascientest, n'importe quelle machine (Linux de préférence) disposant du prérequis suivant devrait convenir:
      
       - docker version >= 20.10.12 installé et démon Docker démarré            
   
    - <u>une machine cliente</u>  
-     Il s'agit d'une machine depuis laquelle les clients de l'API initieront leurs requêtes vers l'API. Pour l'équipe datatascientest, n'importe quelle machine (Linux de préférence) ayant accès à la machine qui 
-     hébergera l'API fera l'affaire.
+     Il s'agit d'une machine depuis laquelle les clients de l'API initieront leurs requêtes vers l'API. Pour l'équipe datatascientest, n'importe quelle machine (Linux de préférence) ayant accès à la machine hôte fera l'affaire.
      
-     Il faudra de plus veiller à ce qu'une connexion ssh soit possible entre le poste client et la machine hôte (celle qui contiendra l'API). Cette condition est nécessaire pour permettre la mise en place d'une redirection de port via ssh entre ces deux machines.
+     Il faudra de plus veiller à ce qu'une connexion ssh soit possible entre le poste client et la machine hôte. Cette condition est nécessaire pour permettre la mise en place d'une redirection de port via ssh entre ces deux machines.
 
 La procédure décrite ci-dessous permettra le déploiement et la mise en service de l'API sur la machine server 
 
