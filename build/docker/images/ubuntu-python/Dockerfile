@@ -24,4 +24,3 @@ RUN  cd /usr/local/src \
       && ./configure --enable-optimizations --with-ensurepip=install \
       && make \
       && make install
-      && pip install -r requirements.txt
