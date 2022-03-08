@@ -217,7 +217,7 @@ Voici les routes, statuts et fonctionnalités associées de l'API :
 | POST  | /players_left_league_on_period | l'ensemble des noms de joueurs ayant quittés une league donnée sur une période donnée. PARAM body : league_name (nom league), beg_year (année début de période), end_year (année fin de période)
 | POST  | /player/add | ajoute un joueur et son ou ses transferts si le joueur n'existe pas déjà, sinon ajoute uniquement le transfert. PARAM body : name, transfers (liste contenant un ou plusieurs dictionnaires des transfers)
 
-Un exemple des appels pour chacune de ces routes est disponible depuis le répertoire "client/postman" à la racine du projet.
+Un exemple des appels pour chacune de ces routes est disponible dans le répertoire "client/postman" depuis la racine du projet.
 
 
 <br/>
@@ -230,6 +230,29 @@ Un exemple des appels pour chacune de ces routes est disponible depuis le réper
 
 ### 2.1. Technologies utilisées <a name='section-technos'></a>
 [Back to top](#cell-toc)<br/>
+
+Dans le cadre de ce projet nous avons utilisés les briques techniques suivantes:
+
+   * **DOCKER**  
+   
+     Docker est la technologie de containerisation qui a été utilisée pour créer les containers hébergeant:  
+     
+     * l'API  
+     * la base de données MongoDB
+     * le client responsable du chargement des données dans la base de données
+
+
+   * **MONGODB**  
+ 
+     Le type de base de données ayant été retenu pour stocker les données du projet.
+
+
+   * **PYTHON**  
+  
+     Le langage de développement utilisé pour coder l'API ainsi que le client responsable du chargement des données.
+     Les librairies suivantes ont été utilisées:
+         * pymongo
+         * flask
 
 
 <br/>
