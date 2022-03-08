@@ -148,10 +148,44 @@ Il contient les informations suivantes:
 
 Ce jeu de données est contenu dans le fichier data/<span style='color:darkgreen;'>top250-00-19.csv</span> depuis la racine du projet.
 
+
 <br/>
 
 ### 1.4. Système de base de données <a name='section-sys-db'></a>
 [Back to top](#cell-toc)<br/>
+
+Nous avons choisi d'utiliser MongoDB pour héberger les données du projet.  
+Le jeu de données initial étant très structuré, nous aurions pu opter pour une base de données RDBMS classique telle que PostgreSQL ; néanmoins notre choix s'est finalement porté sur MongoDB plus pour le fait que nous souhaitions travailler avec une base de données de type NoSQL que parce que le jeu de données l'imposait.
+
+Les données sont donc finalement stockées en base sous un format document tel que celui-ci:
+
+```
+{
+      "name": "<prénom et nom du joueur>"
+   ,  "transfers": [
+         {
+               "age": <age du joueur au moment du transfert>
+            ,  "position": "<position du joueur au moment du transfert>"
+            ,  "league": {
+                     "from": "<league d'où provient le joueur>"
+                  ,  "to": "<league où le joueur est transféré>"
+               }
+            ,  "team": {
+                     "from": "<équipe d'où provient le joueur>"
+                  ,  "to": "<équipe où le joueur est transféré>"
+               }
+            ,  "season": {
+                     "begYear": "<année de début de saison>"
+                  ,  "endYear": "<année de fin de saison>"
+               }
+            ,  "cost": {
+                     "estimation": "<estimation du montant du transfert du joueur sur le marché>"
+                  ,  "réel": "<coût réel du transfert du joueur>"
+               }
+         }
+      ]
+}
+```
 
 
 <br/>
