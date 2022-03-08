@@ -260,6 +260,65 @@ Dans le cadre de ce projet nous avons utilisés les briques techniques suivantes
 ### 2.2. Description du contenu du projet <a name='section-projet-content'></a>
 [Back to top](#cell-toc)<br/>
 
+Le projet est accessible:
+   - soit depuis une archive tgz (fournie à DataScientest)
+   - soit depuis [github](https://github.com/dav-chris/project-3)
+
+> Vous trouverez ci-dessous un descriptif du contenu du répertoire racine du projet:
+
+
+   * <span style='color:darkgreen;'>assets</span>  
+     Ce répertoire ne contient pas d'information essentielle au projet (il peut être ignoré).  
+     Il ne contient que l'image correspondant au logo de MongoDB.
+
+   * <span style='color:darkgreen;'>build</span>  
+     répertoire contenant tous les éléments nécessaires à la construction des images Docker.  
+
+     Chaque image Docker possède son répertoire dans <span style='color:darkgreen;'>build/docker/images</span>
+
+      * <span style='color:darkcyan;'>api-server</span>  
+        répertoire correspondant à l'image project3-api-server.  
+        Cette image contient l'API  et écoute par défaut sur le port 5000 et sur l'ip 0.0.0.0.  
+        Il est possible de configurer l'IP et le port d'écoute de l'API par le biais de variables d'environnement.
+
+      * <span style='color:darkcyan;'>ubuntu-python</span>  
+        répertoire correspondant à l'image project3-ubuntu-python.  
+        Cette image est construite à partir d'une image ubuntu sur laquelle a été installé un environnement Python.
+        Elle sert de base ) la fois pour l'API ainsi que pour le client qui réalise le chargement des données en 
+        base.
+
+      * <span style='color:darkcyan;'>mongo-client</span>  
+        répertoire correspondant à l'image project3-mongo-client.  
+        Cette image est construite à partir de l'image ubuntu-python sur laquelle a été installée le driver Python pour MongoDB (pymongo).
+
+      * <span style='color:darkcyan;'>mongo-loader</span>  
+        répertoire correspondant à l'image project3-mongo-loader.  
+        Cette image est construite à partir de l'image project3-mongo-client sur laquelle a été installée le programme Python qui sert à charger les données dans la base Mongo.
+
+   * <span style='color:darkgreen;'>client/postman</span>  
+    répertoire contenant un fichier de configuration Postman (postman_collection.json) dans lequel a été exporté un ensemble de requêtes de test de l'API.  
+
+   * <span style='color:darkgreen;'>data</span>  
+    répertoire hébergeant le fichier de données (top250-00-19.csv) utilisé pour charger la base de données Mongo.  
+
+
+   * <span style='color:darkgreen;'>src</span>  
+     répertoire contenant les fichiers source développés en language Python.
+     On y trouvera notamment les sous -répertoires suivants:  
+
+      * <span style='color:darkgreen;'>api</span>  
+       répertoire hébergeant le code source de l'API.  
+
+      * <span style='color:darkgreen;'>mongo-loader</span>  
+       répertoire hébergeant le code source ayant été utilisé pour charger les données depuis le fichier csv dans la base Mongo.  
+
+La racine du projet contient en plus, les fichiers suivants:
+
+   * <span style='color:darkgreen;'>docker-compose.yml</span>  
+     le fichier de configuration Docker Compose chargé de gérer la construction et le démarrage des containers utilisés par ce projet.
+
+   * <span style='color:darkgreen;'>README.md</span>  
+     ce fichier readme.
 
 
 <br/>
