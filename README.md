@@ -92,7 +92,7 @@ A noter que l'ensemble des containers Docker évoqués ci-dessus (project3-api-s
 
 La logique est la suivante:
 
-   * Lors de la phase de démarrage de ces containers via Docker Compose, chacun d'eux démarreront en respectant l'ordre suivant:
+   * Lors de la phase de démarrage de ces containers via Docker Compose, chacun d'eux respectera l'ordre suivant:
       - <u>project3-mongo-server</u>  
         Ce container contient la base de données et est donc nécessaire au bon fonctionnement de l'API.  
         Ce container sera donc systématiquement démarré en premier.  
