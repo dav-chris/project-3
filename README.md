@@ -52,7 +52,7 @@ Ce projet a été réalisé dans le cadre de la formation de "**Data Engineer**"
 ### 1.1. Objectifs <a name='section-objectifs'></a>
 [Back to top](#cell-toc)<br/>
 
-L'objectif de ce dernier projet est de choisir, mettre en place, et peupler une base de 
+L'objectif de ce projet est de choisir, mettre en place, et peupler une base de 
 données à partir d'un jeu de données de l'open data, et d'implémenter une API permettant de requêter cette base de 
 données.
 
