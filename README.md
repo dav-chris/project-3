@@ -1,4 +1,5 @@
 
+
 ---
 
 # Projet 3 : Base de données
@@ -55,7 +56,7 @@ L'objectif de ce dernier projet est de choisir, mettre en place, et peupler une 
 données à partir d'un jeu de données de l'open data, et d'implémenter une API permettant de requêter cette base de 
 données.
 
-Nous avons choisi un jeu de données historisant les transferts de footballers entre 2000 et 2018, disponible via le lien ci-dessous : 
+Nous avons choisi un jeu de données historisant les transferts de footballeurs entre 2000 et 2018, disponible via le lien ci-dessous : 
 
 
 •	https://www.kaggle.com/vardan95ghazaryan/top-250-football-transfers-from-2000-to-2018
@@ -107,7 +108,7 @@ La logique est la suivante:
       - <u>project3-mongo-loader</u>  
         Ce container a pour but de charger la base de données avec les données initialement contenues dans un fichier csv.  
         Même si le chargement des données n'est nécessaire qu'une seule fois (après la création de la base qui est déclenchée lors du tout premier démarrage du container project3-mongo-server), ce container sera systématiquement démarré 
-        par Docker Compose. Ce mode de fonctionnement permet de laisser l'opportunité à ce container de s'assurer que collection cible est bien présente dans la base "Football" au sein de MongoDB. Si la collection est détectée alors le travail de ce container prend fin et le container s'arrête automatiquement. Si par contre, il ne détecte par la présence 
+        par Docker Compose. Ce mode de fonctionnement permet de laisser l'opportunité à ce container de s'assurer que la collection cible est bien présente dans la base "Football" au sein de MongoDB. Si la collection est détectée alors le travail de ce container prend fin et le container s'arrête automatiquement. Si par contre, il ne détecte par la présence 
         de la collection, alors la tâche de chargement de données sera démarrée et la base de données sera ré-initialisée 
         avec les données contenues dans le fichier csv.  
         Le chargement des données est géré par un programme Python dont le code est disponible depuis le répertoire 
@@ -284,7 +285,7 @@ Le projet est accessible:
       * <span style='color:darkcyan;'>ubuntu-python</span>  
         répertoire correspondant à l'image project3-ubuntu-python.  
         Cette image est construite à partir d'une image ubuntu sur laquelle a été installé un environnement Python.
-        Elle sert de base ) la fois pour l'API ainsi que pour le client qui réalise le chargement des données en 
+        Elle sert de base à la fois pour l'API ainsi que pour le client qui réalise le chargement des données en 
         base.
 
       * <span style='color:darkcyan;'>mongo-client</span>  
@@ -345,17 +346,17 @@ La procédure d'installation qui est décrite ci-dessous suppose que nous dispos
       - docker version >= 20.10.12 installé et démon Docker démarré            
   
    - <u>une machine cliente</u>  
-     Il s'agit d'une machine depuis laquelle les clients de l'API initieront leurs requêtes vers l'API. Pour l'équipe datatascientest, n'importe quelle machine (Linux de préférence) ayant accès à la machine hôte fera l'affaire.
+     Il s'agit d'une machine depuis laquelle les clients de l'API initieront leurs requêtes vers l'API. Pour l'équipe datatascientest, n'importe quelle machine ayant accès à la machine hôte fera l'affaire.
      
      Il faudra de plus veiller à ce qu'une connexion ssh soit possible entre le poste client et la machine hôte. Cette condition est nécessaire pour permettre la mise en place d'une redirection de port via ssh entre ces deux machines.
 
-La procédure décrite ci-dessous permettra le déploiement et la mise en service de l'API sur la machine server 
+La procédure décrite ci-dessous permettra le déploiement et la mise en service de l'API sur la machine hôte. 
 
 ---
 
 <u>Procédure de déploiement et démarrage de l'API</u>:
 
-**1. Connectez vous sur la machine server**  
+**1. Connectez vous sur la machine hôte**  
 
 **2. Rendez vous dans un répertoire dans lequel nous allons récupérer le projet**  
 
@@ -385,16 +386,16 @@ Comme précisé dans le chapitre "Architecture du projet" le projet est composé
    * **project3-mongo-server**  
      Ce conteneur contient le serveur MongoDB.  
      Il est construit à partir d'une image Docker ("mongo:latest") qui est une image officielle maintenue par [the Docker Community](https://github.com/docker-library/mongo)  
-     Puisque nous utiliserons une image déjà disponible pour ce container il n'y a rien de besoin de faire pour ce conteneur. L'image existante sera simplement téléchargée et utilisée par Docker Compose pour la construction du conteneur.
+     Puisque nous utiliserons une image déjà disponible pour ce container il n'y a rien besoin de faire pour ce conteneur. L'image existante sera simplement téléchargée et utilisée par Docker Compose pour la construction du conteneur.
      
    * **project3-mongo-loader**  
      Ce conteneur aura pour tâche de créer et d'alimenter la collection au sein d'une base MongoDB avec les données.  
-     Le chargement a proprement parler est réalisé par un programme Python.  
+     Le chargement à proprement parler est réalisé par un programme Python.  
      Pour son bon fonctionnement le conteneur a donc besoin que Python soit installé ainsi que ses dépendances (en l'occurrence la librairie pymongo).  
-     Pour la construction de ce conteneur sera réalisée comme suit:
+     La construction de ce conteneur sera réalisée comme suit:
         - à partir de l'image <span style='color:darkmagenta;'>project3-ubuntu-python</span>  
           cette image n'est rien d'autre que l'image <span style='color:darkmagenta;'>ubuntu:latest</span> sur laquelle nous installons Python.
-        - depuis l'image <span style='color:darkmagenta;'>project3-ubuntu-python</span> nous construisons l'image <span style='color:darkmagenta;'>project3-mongo-client</span> sur laquelle nous installons les dépendences Python dont aura besoin le "loader" (à savoir pymongo).
+        - depuis l'image <span style='color:darkmagenta;'>project3-ubuntu-python</span> nous construisons l'image <span style='color:darkmagenta;'>project3-mongo-client</span> sur laquelle nous installons les dépendances Python dont aura besoin le "loader" (à savoir pymongo).
 
 Les commandes suivantes vont donc permettre de construire les images Docker nécessaires à l'instanciation des conteneurs Docker:
 
@@ -452,9 +453,7 @@ Le conteneur project3-mongo-loader s'est arrêté dès que le chargement des don
 ### 3.2. Tests de bon fonctionnement de l'API <a name='section-test-api'></a>
 [Back to top](#cell-toc)<br/>
 
-Voici quelques commandes qui permettent de vérifier le bon fonctionnement de l'API, à lancer de la machine hôte.
-
-Voici un exemple des commandes CURL :
+Voici quelques commandes qui permettent de vérifier le bon fonctionnement de l'API, à lancer de la machine hôte :
 
 * Tester la disponibilité de l'API
 
@@ -474,13 +473,13 @@ curl -X GET http://localhost:5000/status/db
 curl -X GET http://localhost:5000/players/count
 ```
 
-* Rechercher un joueur par un <pattern>
+* Rechercher un joueur par un prénom ou un nom de famille
 
 ```bash
 curl -X GET http://localhost:5000/player/name/Zinedine
 ```
 
-* Rechercher un joueur par son nom exact
+* Rechercher un joueur par son nom complet (prénom nom)
 
 ```bash
 curl -iX POST localhost:5000/player/byname -d '{"PlayerName":"Giangiacomo Magnani"}' -H 'Content-Type: application/json'
@@ -532,4 +531,5 @@ Exemple:
 Importer dans Postman le fichier disponible dans le répertoire projet client/postman
 
 Lancer les exemples de requêtes prédéfinies pour l'ensemble des routes de l'API.
+
 
