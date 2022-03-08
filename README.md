@@ -33,7 +33,7 @@
       
    3. [Mise en oeuvre du projet](#section-setup)  
 
-      3.1. [Démarrage des noeuds](#section-start-nodes)  
+      3.1. [Installation](#section-start-nodes)  
       3.2. [Tests de bon fonctionnement de l'API](#section-test-api)     
       3.3. [Requêter l'API](#section-use-api)
 
@@ -54,6 +54,14 @@ L'objectif de ce dernier projet est de choisir, mettre en place, et peupler une 
 données à partir d'un jeu de données de l'open data, et d'implémenter une API permettant de requêter cette base de 
 données.
 
+Nous avons choisi un jeu de données historisant les transferts de footballers entre 2000 et 2018, disponible via le lien ci-dessous : 
+
+
+•	https://www.kaggle.com/vardan95ghazaryan/top-250-football-transfers-from-2000-to-2018
+
+Nous avons décidé de les intégrer dans une base MongoDB, ie une base documents. 
+
+Une API a ensuite été créée afin de consulter ces données à partir d'un certain nombre de requêtes, et modifier ces données. L'ensemble des fonctionnalités de l'API est décrite dans la partie [Fonctionnalités de l'API](#section-api-functionalities) 
 
 <br/>
 
@@ -105,7 +113,7 @@ La logique est la suivante:
         src > mongo-loader à partir de la racine du projet.
 
       - <u>project3-api-server</u>  
-        Ce container héberge l'API et est donc dépend des deux premiers autres containers.  
+        Ce container héberge l'API et est donc dépendant des deux premiers autres containers.  
         Le fait de démarrer en dernier l'API permet à la fois d'avoir une base de données déjà démarrée et également chargée avec les données.
 
 Les communications entre la base mongo et les deux autres containers seront rendues possibles grâce au réseau Docker 
@@ -130,6 +138,32 @@ De plus, le port local 27017 de la machine hôte sera redirigé vers le port d'�
 
 ### 1.5. Fonctionnalités de l'API <a name='section-api-functionalities'></a>
 [Back to top](#cell-toc)<br/>
+
+Voici les routes, statuts et fonctionnalités associées de l'API :  
+
+<br/>
+
+| Type | Route | Fonctionnalité   
+| :--- | :--- | :--- 
+| GET  | /status | permet de vérifier la disponibilité de l'API depuis une machine cliente
+| GET  | /status/db | permet de vérifier la disponibilité de l'API depuis une machine cliente, ainsi que l'accès à la base de données
+| GET  | /players/count | renvoie le nombre de joueurs référencés dans la base de données
+| GET  | /player/find_one | renvoie le premier joueur trouvé en base de données avec l'ensemble des informations qui lui sont associé
+| GET  | /player/id/<string:id> | renvoie les informations concernant le joueur correspondant à l'ID fourni en argument 
+| GET  | /player/names | renvoie le noms de tous les joueurs référencés dans la base de données 
+| GET  | /player/name/<string:name> | renvoie les joueurs dont le nom contient <pattern>, sans tenir compte de la casse
+| POST  | /player/byname | recherche un joueur par son nom exact. PARAM body : Playername
+| GET  | /transfer/count/per_player | renvoie le nombre de transfers réalisés par joueur 
+| GET  | /TransfersNbPerTeamFrom | compte le nombre de transfert par équipe d'origine 
+| GET  | /TransfersNbPerTeamTo | compte le nombre de transfert par équipe cible du transfert
+| GET  | /TransfersCostMaxPerTeam | compte le transfert le plus cher par équipe
+| GET  | /league/names | renvoie l'ensemble des noms de league référencés dans la base de données
+| GET  | /team/names | renvoie l'ensemble des noms d'équipes référencés dans la base de données 
+| GET  | /teams_per_league | renvoie l'ensemble des noms de clubs référencés dans la base de données par league
+| POST  | /players_left_league_on_period | l'ensemble des noms de joueurs ayant quittés une league donnée sur une période donnée. PARAM body : league_name (nom league), beg_year (année début de période), end_year (année fin de période)
+| POST  | /player/add | ajoute un joueur et son ou ses transferts si le joueur n'existe pas déjà, sinon ajoute uniquement le transfert. PARAM body : name, transfers (liste contenant un ou plusieurs dictionnaires des transfers)
+
+Un exemple des appels pour chacune de ces routes est disponible depuis le répertoire "client/postman" à la racine du projet.
 
 
 <br/>
@@ -160,17 +194,158 @@ De plus, le port local 27017 de la machine hôte sera redirigé vers le port d'�
 
 <br/>
 
-### 3.1. Démarrage des noeuds <a name='section-start-nodes'></a>
+### 3.1. Installation <a name='section-start-nodes'></a>
 [Back to top](#cell-toc)<br/>
+
+Vous trouverez ci-dessous une procédure décrivant comment installer et démarrer l'API du projet
+
+La procédure d'installation qui est décrite ci-dessous suppose que nous disposions de deux machines:
+
+   - <u>une machine hôte</u>  
+     (qui contiendra l'API)  
+     Dans notre cas, nous avons pris la VM mise à disposition par datascientest pour héberger l'API.  
+     Pour l'équipe datascientest, n'importe quelle machine (Linux de préférence) disposant du prérequis suivant devrait convenir:
+     
+      - docker version >= 20.10.12 installé et démon Docker démarré            
+  
+   - <u>une machine cliente</u>  
+     Il s'agit d'une machine depuis laquelle les clients de l'API initieront leurs requêtes vers l'API. Pour l'équipe datatascientest, n'importe quelle machine (Linux de préférence) ayant accès à la machine qui 
+     hébergera l'API fera l'affaire.
+     
+     Il faudra de plus veiller à ce qu'une connexion ssh soit possible entre le poste client et la machine hôte (celle qui contiendra l'API). Cette condition est nécessaire pour permettre la mise en place d'une redirection de port via ssh entre ces deux machines.
+
+La procédure décrite ci-dessous permettra le déploiement et la mise en service de l'API sur la machine server 
+
+---
+
+<u>Procédure de déploiement et démarrage de l'API</u>:
+
+**1. Connectez vous sur la machine server**  
+
+**2. Rendez vous dans un répertoire dans lequel nous allons récupérer le projet**  
+
+**3. Récupération du projet depuis Github**  
+  
+Exécuter la commande suivante:
+
+```bash
+git clone https://github.com/dav-chris/project3.git ./project
+```
+
+Le résultat devrait être le suivant:  
+un répertoire nommé "project3" devrait avoir été créé contenant tout le projet.  
+
+Si pour quelque raison que ce soit, des difficultés étaient rencontrées lors de cette étape, il serait alors possible d'extraire le projet depuis l'archive qui a été fournie à DataScientest à l'aide de la commande suivante (en ayant pris soin préalablement d'être positionné dans le répertoire devant contenir le projet):
+
+```bash
+tar xvfz project3-deploiement.tgz
+```
+
+Désormais avec l'une des deux commandes présentées ci-dessus nous devrions avoir le répertoire "project" présent dans le répertoire courant.
+
+**4. Lancement des conteneurs**  
+
+A la racine du projet, vous devriez trouver le fichier docker-compose.yml
+
+Pour lancer l'exécution des conteneurs, voici la commande :
+
+```bash
+docker-compose up -d
+```
+
+Vérifier que les conteneurs sont bien actifs : 
+```bash
+docker container ls
+```
+Vous devriez trouver les conteneurs : 
+   - project3-mongo-server
+   - project3-api-cont 
+
+Le conteneur project3-mongo-loader s'est arrêté dès que le chargement des données s'est effectué (si les données n'existaient pas déjà).
 
 <br/>
 
 ### 3.2. Tests de bon fonctionnement de l'API <a name='section-test-api'></a>
 [Back to top](#cell-toc)<br/>
 
+Voici quelques commandes qui permettent de vérifier le bon fonctionnement de l'API, à lancer de la machine hôte.
+
+Voici un exemple des commandes CURL :
+
+* Tester la disponibilité de l'API
+
+```bash
+curl -X GET http://localhost:5000/status  
+```
+
+* Tester la disponibilité de l'API et l'accès à la base de données
+
+```bash
+curl -X GET http://localhost:5000/status/db
+```
+
+* Compter le nombre de joueurs
+
+```bash
+curl -X GET http://localhost:5000/players/count
+```
+
+* Rechercher un joueur par un <pattern>
+
+```bash
+curl -X GET http://localhost:5000/player/name/Zinedine
+```
+
+* Rechercher un joueur par son nom exact
+
+```bash
+curl -iX POST localhost:5000/player/byname -d '{"PlayerName":"Giangiacomo Magnani"}' -H 'Content-Type: application/json'
+```
+
+* Rechercher un joueur par son identifiant
+
+```bash
+curl -X GET http://localhost:5000/player/id/621cdf4aca20a455e291218a 
+```
 
 <br/>
 
 ### 3.3. Requêter l'API <a name='section-use-api'></a>
 [Back to top](#cell-toc)<br/>
+
+La procédure décrite ci-dessous permettra de valider le bon fonctionnement de l'API en réalisant des requêtes de test.  
+
+**1. Connection à la machine cliente**  
+
+Connectez vous sur la machine cliente (machine  différente de celle où tourne l'API), sur laquelle vous pouvez ouvrir un browser avec Postman par exemple.
+   
+**2. Redirection de port**
+
+Pour que la machine cliente puisse joindre l'API, nous allons dans un premier temps devoir faire une redirection de port. Pour cela, exécutez la commande suivante en prenant soin de remplacer:
+   - <key.pem\>  
+     par le nom du fichier correspondant à la clé permettant de se connecter à la machine server
+     
+   - <username\>  
+     par le nom du compte utilisateur permettant de se connecter à la machine server depuis la machine cliente       
+
+   - <machine_server_ip\>  
+     par l'adresse IP de la machine qui contient l'API
+
+   - <service_port\>  
+     par le port du service exposée par l'API (indiquée dans le fichier docker-compose)   
+     
+
+```bash
+ssh -i <key.pem\> <username\>@<machine_server_ip\> -fNL 5000:localhost\>:<service_port\>
+```
+
+Exemple:
+>
+>   `ssh -i "data_enginering_machine.pem" ubuntu@34.240.96.199 -fNL 5000:localhost:5000`
+
+**3. Requêter l'API via Postman**
+
+Importer dans Postman le fichier disponible dans le répertoire projet client/postman
+
+Lancer les exemples de requêtes prédéfinies pour l'ensemble des routes de l'API.
 
