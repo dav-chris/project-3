@@ -1,3 +1,4 @@
+
 ---
 
 # Projet 3 : Base de données
@@ -233,7 +234,7 @@ git clone https://github.com/dav-chris/project-3.git ./project
 ```
 
 Le résultat devrait être le suivant:  
-un répertoire nommé "project3" devrait avoir été créé contenant tout le projet.  
+un répertoire nommé "project" devrait avoir été créé contenant tout le projet.  
 
 Si pour quelque raison que ce soit, des difficultés étaient rencontrées lors de cette étape, il serait alors possible d'extraire le projet depuis l'archive qui a été fournie à DataScientest à l'aide de la commande suivante (en ayant pris soin préalablement d'être positionné dans le répertoire devant contenir le projet):
 
@@ -243,14 +244,63 @@ tar xvfz project3-deploiement.tgz
 
 Désormais avec l'une des deux commandes présentées ci-dessus nous devrions avoir le répertoire "project" présent dans le répertoire courant.
 
-**4. Lancement des conteneurs**  
+**4. Construction des images Docker**  
+
+Comme précisé dans le chapitre "Architecture du projet" le projet est composé de plusieurs conteneurs Docker:
+
+   * **project3-mongo-server**  
+     Ce conteneur contient le serveur MongoDB.  
+     Il est construit à partir d'une image Docker ("mongo:latest") qui est une image officielle maintenue par [the Docker Community](https://github.com/docker-library/mongo)  
+     Puisque nous utiliserons une image déjà disponible pour ce container il n'y a rien de besoin de faire pour ce conteneur. L'image existante sera simplement téléchargée et utilisée par Docker Compose pour la construction du conteneur.
+     
+   * **project3-mongo-loader**  
+     Ce conteneur aura pour tâche de créer et d'alimenter la collection au sein d'une base MongoDB avec les données.  
+     Le chargement a proprement parler est réalisé par un programme Python.  
+     Pour son bon fonctionnement le conteneur a donc besoin que Python soit installé ainsi que ses dépendances (en l'occurrence la librairie pymongo).  
+     Pour la construction de ce conteneur sera réalisée comme suit:
+        - à partir de l'image <span style='color:darkmagenta;'>project3-ubuntu-python</span>  
+          cette image n'est rien d'autre que l'image <span style='color:darkmagenta;'>ubuntu:latest</span> sur laquelle nous installons Python.
+        - depuis l'image <span style='color:darkmagenta;'>project3-ubuntu-python</span> nous construisons l'image <span style='color:darkmagenta;'>project3-mongo-client</span> sur laquelle nous installons les dépendences Python dont aura besoin le "loader" (à savoir pymongo).
+
+Les commandes suivantes vont donc permettre de construire les images Docker nécessaires à l'instanciation des conteneurs Docker:
+
+**[*] Construction de l'image Docker: project3-ubuntu-python**
+
+Dans une console, depuis la racine du projet, exécutez la commande suivante:
+
+```bash
+docker image build                                     \
+   --file build/docker/images/ubuntu-python/Dockerfile \
+   --pull                                              \
+   --tag project3-ubuntu-python                        \
+   .
+```
+
+
+**[*] Construction de l'image Docker: project3-mongo-client**
+
+Dans une console, depuis la racine du projet, exécutez la commande suivante:
+
+```bash
+docker image build                                    \
+   --file build/docker/images/mongo-client/Dockerfile \
+   --tag project3-mongo-client                        \
+   .
+```
+
+A noter que les images Docker suivantes seront construites directement par Docker Compose:
+   - <span style='color:darkmagenta;'>project3-mongo-loader</span>
+   - <span style='color:darkmagenta;'>project3-api-server</span>
+
+
+**5. Lancement des conteneurs**  
 
 A la racine du projet, vous devriez trouver le fichier docker-compose.yml
 
 Pour lancer l'exécution des conteneurs, voici la commande :
 
 ```bash
-docker-compose up -d
+docker-compose up --build -d
 ```
 
 Vérifier que les conteneurs sont bien actifs : 
