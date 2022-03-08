@@ -60,7 +60,7 @@ Nous avons choisi un jeu de données historisant les transferts de footballers e
 
 •	https://www.kaggle.com/vardan95ghazaryan/top-250-football-transfers-from-2000-to-2018
 
-Nous avons décidé de les intégrer dans une base MongoDB, ie une base documents. 
+Nous avons décidé de les intégrer dans une base MongoDB, ie une base NoSQL orientée documents. 
 
 Une API a ensuite été créée afin de consulter ces données à partir d'un certain nombre de requêtes, et modifier ces données. L'ensemble des fonctionnalités de l'API est décrite dans la partie [Fonctionnalités de l'API](#section-api-functionalities) 
 
@@ -128,6 +128,25 @@ De plus, le port local 27017 de la machine hôte sera redirigé vers le port d'�
 ### 1.3. Jeu de données <a name='section-data'></a>
 [Back to top](#cell-toc)<br/>
 
+Le jeu de données qui a été choisi dans le cadre de ce projet est accessible: [ici](https://www.kaggle.com/vardan95ghazaryan/top-250-football-transfers-from-2000-to-2018)  
+
+Il s'agit de l'ensemble de données des 250 transferts de football les plus chers de la saison 2000-2001 à 2018-2019.  
+Le jeu de données a été créé le 1er août 2018 et pour cette raison il peut contenir une liste incomplète pour la dernière partie (été 2018).
+
+Le jeu de données est composé de:
+   - 4700 lignes au total
+   - 10 colonnes 
+
+Il contient les informations suivantes:
+   - le nom d'un joueur de football  
+   - l'équipe et la ligue d'où part le joueur
+   - l'équipe et la ligue où le joueur arrive
+   - une valeur marchande estimée d'un joueur  
+   - une valeur réelle d'un transfert  
+   - la position d'un joueur au moment du transfert
+   - la saison pendant laquelle le transfert a eu lieu
+
+Ce jeu de données est contenu dans le fichier data/<span style='color:darkgreen;'>top250-00-19.csv</span> depuis la racine du projet.
 
 <br/>
 
