@@ -30,18 +30,18 @@ services:
     depends_on:
       - mongo-server
 
-  # api:
-  #   image: project3-api
-  #   build:
-  #     dockerfile: build/docker/images/api/Dockerfile
-  #     context: .
-  #   container_name: project3-api-server
-  #   networks:
-  #     - project3-net-bdd
-  #   ports:
-  #     - "5000:5000"
-  #   depends_on:
-  #     - mongo-loader
+  api:
+    image: project3-api-server
+    build:
+      dockerfile: build/docker/images/api-server/Dockerfile
+      context: .
+    container_name: project3-api-server
+    networks:
+      - project3-net-bdd
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo-loader
 
 networks:
   project3-net-bdd:

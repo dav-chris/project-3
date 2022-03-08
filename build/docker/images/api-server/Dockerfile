@@ -3,7 +3,7 @@ FROM project3-ubuntu-python
 RUN apt-get update \
       && apt-get dist-upgrade -y
 
-COPY build/docker/images/api/api-server_requirements.txt /app/conf/
+COPY build/docker/images/api-server/api-server_requirements.txt /app/conf/
 COPY src/api/ /app/src/api/
 
 RUN python3 -m pip install --upgrade pip \
@@ -11,4 +11,4 @@ RUN python3 -m pip install --upgrade pip \
 
 EXPOSE 5000
 
-CMD [    "python3" , "/app/src/api/main.py" ]
+CMD [ "python3", "/app/src/api/main.py" ]
