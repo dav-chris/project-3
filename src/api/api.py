@@ -203,12 +203,10 @@ def get_player_per_name(name):
       La recherche de <pattern> dans le nom du joueur ne prend pas en compte la casse.
    '''
    data = []
-   cursor = coll.find({"$text": {"$search": name}})
-   data += list(cursor)
-   return {
-      "data" : json.loads(json_util.dumps(data))
-   }
-
+   coll.create_index([('name', 'text')])
+   cursor = list(coll.find({"$text": {"$search": name}}))
+   data.append(cursor)  
+   return {"data" : json.loads(json_util.dumps(data))}
 
 # Count the nb of transfers per player, for all players
 @api.route('/transfer/count/per_player')
