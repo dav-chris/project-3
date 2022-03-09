@@ -375,7 +375,7 @@ un répertoire nommé "project" devrait avoir été créé contenant tout le pro
 Si pour quelque raison que ce soit, des difficultés étaient rencontrées lors de cette étape, il serait alors possible d'extraire le projet depuis l'archive qui a été fournie à DataScientest à l'aide de la commande suivante (en ayant pris soin préalablement d'être positionné dans le répertoire devant contenir le projet):
 
 ```bash
-tar xvfz project3-deploiement.tgz
+tar xvfz project3-bdd.tgz
 ```
 
 Désormais avec l'une des deux commandes présentées ci-dessus nous devrions avoir le répertoire "project" présent dans le répertoire courant.
