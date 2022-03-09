@@ -218,7 +218,7 @@ Voici les routes, statuts et fonctionnalités associées de l'API :
 | POST | /players_left_league_on_period | l'ensemble des noms de joueurs ayant quittés une league donnée sur une période donnée. PARAM body : league_name (nom league), beg_year (année début de période), end_year (année fin de période)
 | POST | /player/add | ajoute un joueur et son ou ses transferts si le joueur n'existe pas déjà, sinon ajoute uniquement le transfert. PARAM body : name, transfers (liste contenant un ou plusieurs dictionnaires des transfers)
 
-Un exemple des appels pour chacune de ces routes est disponible dans le répertoire "client/postman" depuis la racine du projet.
+*Un exemple des appels pour chacune de ces routes est disponible dans le répertoire "client/postman" depuis la racine du projet.*
 
 
 <br/>
@@ -250,8 +250,9 @@ Dans le cadre de ce projet nous avons utilisés les briques techniques suivantes
 
    * **PYTHON**  
   
-     Le langage de développement utilisé pour coder l'API ainsi que le client responsable du chargement des données.
+     Le langage de développement utilisé pour coder l'API ainsi que le client responsable du chargement des données.  
      Les librairies suivantes ont été utilisées:
+     
          * pymongo
          * flask
 
