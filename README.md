@@ -491,7 +491,7 @@ curl -iX POST localhost:5000/player/byname -d '{"PlayerName":"Giangiacomo Magnan
 curl -X GET http://localhost:5000/player/find_one
 ```
 
-* Rechercher un joueur par son identifiant
+* Rechercher un joueur par son identifiant  
 Récupérer l'identifiant $oid de la requête find_one ci-dessus et remplacer l'identifiant indiqué ci-dessous :
    
 ```bash
