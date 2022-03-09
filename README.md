@@ -204,9 +204,9 @@ Voici les routes, statuts et fonctionnalités associées de l'API :
 | GET  | /status/db | permet de vérifier la disponibilité de l'API depuis une machine cliente, ainsi que l'accès à la base de données
 | GET  | /players/count | renvoie le nombre de joueurs référencés dans la base de données
 | GET  | /player/find_one | renvoie le premier joueur trouvé en base de données avec l'ensemble des informations qui lui sont associé
-| GET  | /player/id/<string:id> | renvoie les informations concernant le joueur correspondant à l'ID fourni en argument 
+| GET  | /player/id/<string:id\> | renvoie les informations concernant le joueur correspondant à l'ID fourni en argument 
 | GET  | /player/names | renvoie le noms de tous les joueurs référencés dans la base de données 
-| GET  | /player/name/<string:name> | renvoie les joueurs dont le nom contient <pattern>, sans tenir compte de la casse
+| GET  | /player/name/<string:name\> | renvoie les joueurs dont le nom contient <pattern\>, sans tenir compte de la casse
 | POST | /player/byname | recherche un joueur par son nom exact. PARAM body : Playername
 | GET  | /transfer/count/per_player | renvoie le nombre de transfers réalisés par joueur 
 | GET  | /TransfersNbPerTeamFrom | compte le nombre de transfert par équipe d'origine 
