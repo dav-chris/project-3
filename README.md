@@ -504,20 +504,16 @@ curl -X GET http://localhost:5000/player/id/621cdf4aca20a455e291218a
 ### 3.3. Requêter l'API <a name='section-use-api'></a>
 [Back to top](#cell-toc)<br/>
 
-La procédure décrite ci-dessous permettra de valider le bon fonctionnement de l'API en réalisant des requêtes de test.  
+La procédure décrite ci-dessous permettra de valider le bon fonctionnement de l'API en réalisant des requêtes de test.
+Si votre machine hôte a un accès internet via un browser, vous pouvez directement lancer les requêtes via Postman, en important le fichier déposé dans le répertoire client/postman.
+Si votre machine hôte est par exemple une VM Datascientest, vous allez devoir faire une redirection de port entre votre poste local et la machine hote, pour ensuite lancer les requêtes via Postman.
 
-**1. Connection à la machine cliente**  
-
-Connectez vous sur la machine cliente (machine  différente de celle où tourne l'API), sur laquelle vous pouvez ouvrir un browser avec Postman par exemple.
-   
-**2. Redirection de port**
-
-Pour que la machine cliente puisse joindre l'API, nous allons dans un premier temps devoir faire une redirection de port. Pour cela, exécutez la commande suivante en prenant soin de remplacer:
+Pour effectuer la redirection de port, exécutez la commande suivante de votre poste en prenant soin de remplacer:
    - <key.pem\>  
-     par le nom du fichier correspondant à la clé permettant de se connecter à la machine server
+     par le nom du fichier correspondant à la clé permettant de se connecter à la machine hôte
      
    - <username\>  
-     par le nom du compte utilisateur permettant de se connecter à la machine server depuis la machine cliente       
+     par le nom du compte utilisateur permettant de se connecter à la machine hôte depuis votre poste       
 
    - <machine_server_ip\>  
      par l'adresse IP de la machine qui contient l'API
@@ -534,10 +530,5 @@ Exemple:
 >
 >   `ssh -i "data_enginering_machine.pem" ubuntu@34.240.96.199 -fNL 5000:localhost:5000`
 
-**3. Requêter l'API via Postman**
-
-Importer dans Postman le fichier disponible dans le répertoire projet client/postman
-
-Lancer les exemples de requêtes prédéfinies pour l'ensemble des routes de l'API.
 
 
