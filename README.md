@@ -266,7 +266,7 @@ Le projet est accessible:
    - soit depuis une archive tgz (fournie à DataScientest)
    - soit depuis [github](https://github.com/dav-chris/project-3)
 
-> Vous trouverez ci-dessous un descriptif du contenu du répertoire racine du projet:
+Vous trouverez ci-dessous un descriptif du contenu du répertoire racine du projet:
 
 
    * <span style='color:darkgreen;'>assets</span>  
