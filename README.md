@@ -200,23 +200,23 @@ Voici les routes, statuts et fonctionnalités associées de l'API :
 
 | Type | Route | Fonctionnalité   
 | :--- | :--- | :--- 
-| GET  | <span style='color:blue;'>/status</span> | permet de vérifier la disponibilité de l'API depuis une machine cliente
-| GET  | <span style='color:blue;'>/status/db</span> | permet de vérifier la disponibilité de l'API depuis une machine cliente, ainsi que l'accès à la base de données
-| GET  | <span style='color:blue;'>/players/count</span> | renvoie le nombre de joueurs référencés dans la base de données
-| GET  | <span style='color:blue;'>/player/find_one</span> | renvoie le premier joueur trouvé en base de données avec l'ensemble des informations qui lui sont associé
-| GET  | <span style='color:blue;'>/player/id/<string:id\></span> | renvoie les informations concernant le joueur correspondant à l'ID fourni en argument 
-| GET  | <span style='color:blue;'>/player/names</span> | renvoie le noms de tous les joueurs référencés dans la base de données 
-| GET  | <span style='color:blue;'>/player/name/<string:name\></span> | renvoie les joueurs dont le nom contient <pattern>, sans tenir compte de la casse
-| POST | <span style='color:blue;'>/player/byname</span> | recherche un joueur par son nom exact. PARAM body : Playername
-| GET  | <span style='color:blue;'>/transfer/count/per_player</span> | renvoie le nombre de transfers réalisés par joueur 
-| GET  | <span style='color:blue;'>/TransfersNbPerTeamFrom</span> | compte le nombre de transfert par équipe d'origine 
-| GET  | <span style='color:blue;'>/TransfersNbPerTeamTo</span> | compte le nombre de transfert par équipe cible du transfert
-| GET  | <span style='color:blue;'>/TransfersCostMaxPerTeam</span> | compte le transfert le plus cher par équipe
-| GET  | <span style='color:blue;'>/league/names</span> | renvoie l'ensemble des noms de league référencés dans la base de données
-| GET  | <span style='color:blue;'>/team/names</span> | renvoie l'ensemble des noms d'équipes référencés dans la base de données 
-| GET  | <span style='color:blue;'>/teams_per_league</span> | renvoie l'ensemble des noms de clubs référencés dans la base de données par league
-| POST | <span style='color:blue;'>/players_left_league_on_period</span> | l'ensemble des noms de joueurs ayant quittés une league donnée sur une période donnée. PARAM body : league_name (nom league), beg_year (année début de période), end_year (année fin de période)
-| POST | <span style='color:blue;'>/player/add</span> | ajoute un joueur et son ou ses transferts si le joueur n'existe pas déjà, sinon ajoute uniquement le transfert. PARAM body : name, transfers (liste contenant un ou plusieurs dictionnaires des transfers)
+| GET  | /status | permet de vérifier la disponibilité de l'API depuis une machine cliente
+| GET  | /status/db | permet de vérifier la disponibilité de l'API depuis une machine cliente, ainsi que l'accès à la base de données
+| GET  | /players/count | renvoie le nombre de joueurs référencés dans la base de données
+| GET  | /player/find_one | renvoie le premier joueur trouvé en base de données avec l'ensemble des informations qui lui sont associé
+| GET  | /player/id/<string:id\> | renvoie les informations concernant le joueur correspondant à l'ID fourni en argument 
+| GET  | /player/names | renvoie le noms de tous les joueurs référencés dans la base de données 
+| GET  | /player/name/<string:name\> | renvoie les joueurs dont le nom contient <pattern>, sans tenir compte de la casse
+| POST | /player/byname | recherche un joueur par son nom exact. PARAM body : Playername
+| GET  | /transfer/count/per_player | renvoie le nombre de transfers réalisés par joueur 
+| GET  | /TransfersNbPerTeamFrom | compte le nombre de transfert par équipe d'origine 
+| GET  | /TransfersNbPerTeamTo | compte le nombre de transfert par équipe cible du transfert
+| GET  | /TransfersCostMaxPerTeam | compte le transfert le plus cher par équipe
+| GET  | /league/names | renvoie l'ensemble des noms de league référencés dans la base de données
+| GET  | /team/names | renvoie l'ensemble des noms d'équipes référencés dans la base de données 
+| GET  | /teams_per_league | renvoie l'ensemble des noms de clubs référencés dans la base de données par league
+| POST | /players_left_league_on_period | l'ensemble des noms de joueurs ayant quittés une league donnée sur une période donnée. PARAM body : league_name (nom league), beg_year (année début de période), end_year (année fin de période)
+| POST | /player/add | ajoute un joueur et son ou ses transferts si le joueur n'existe pas déjà, sinon ajoute uniquement le transfert. PARAM body : name, transfers (liste contenant un ou plusieurs dictionnaires des transfers)
 
 Un exemple des appels pour chacune de ces routes est disponible dans le répertoire "client/postman" depuis la racine du projet.
 
