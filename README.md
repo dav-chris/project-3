@@ -484,9 +484,16 @@ curl -X GET http://localhost:5000/player/name/Zinedine
 ```bash
 curl -iX POST localhost:5000/player/byname -d '{"PlayerName":"Giangiacomo Magnani"}' -H 'Content-Type: application/json'
 ```
+   
+* Rechercher le premier joueur trouvé en base de données
+
+```bash
+curl -X GET http://localhost:5000/player/find_one
+```
 
 * Rechercher un joueur par son identifiant
-
+Récupérer l'identifiant $oid de la requête find_one ci-dessus et remplacer l'identifiant indiqué ci-dessous :
+   
 ```bash
 curl -X GET http://localhost:5000/player/id/621cdf4aca20a455e291218a 
 ```
